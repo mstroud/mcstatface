@@ -1,4 +1,4 @@
-# Simple Web Frontend for mcstats
+# Simple Flask frontend for mcstats
 
 ## Getting Started
 

@@ -1,6 +1,39 @@
-{% block title %}{{ title }}{% endblock %}
+{% extends "base.html" %}
+
+{% block title %}{{ s.server.host }}{% endblock %}
 
 {% block content %}
-  <pre>{{ server }}</pre>
-  <pre>{{ status }}</pre>
+  <table class=greyGridTable>
+  <tr>
+    <th>Server IP/Hostname</th>
+    <th>Port</th>
+    <th>Description</th>
+    <th>Version</th>
+    <th>Players</th>
+    <th>Latency</th>
+  </tr>
+  <tr>
+    <td>{{ s.server.host }}</td>
+    <td>{{ s.server.port }}</td>
+    <td>{{ s.status.description.text }}</td>
+    <td>{{ s.status.version.name }}, protocol {{ s.status.version.protocol }}</td>
+    <td>{{ s.status.players.online }} / {{ s.status.players.max }}</td>
+    <td>{{ s.status.latency }} ms</td>
+  </tr>
+  </table>
+  
+  {% if s.status.players.online > 0 %}
+  <table class=greyGridTable>
+  <tr>
+    <th>Player Name</th>
+    <th>Player UUID</th>
+  </tr>
+    {% for p in s.status.players.sample %}
+  <tr>
+    <td>{{ p.name }}</td>
+    <td>{{ p.id }}</td>
+  </tr>
+    {% endfor %}  
+  </table>
+  {% endif %}
 {% endblock %}
