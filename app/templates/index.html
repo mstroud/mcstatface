@@ -3,15 +3,17 @@
 {% block title %}{{ s.server.host }}{% endblock %}
 
 {% block content %}
-  <table class=greyGridTable>
+  <table class=minimalistBlack>
+  <thead>
   <tr>
     <th>Server IP/Hostname</th>
     <th>Port</th>
     <th>Description</th>
     <th>Version</th>
     <th>Players</th>
-    <th>Latency</th>
+    <th>Ping</th>
   </tr>
+  </thead>
   <tr>
     <td>{{ s.server.host }}</td>
     <td>{{ s.server.port }}</td>
@@ -23,11 +25,13 @@
   </table>
   
   {% if s.status.players.online > 0 %}
-  <table class=greyGridTable>
+  <table class=minimalistBlack>
+  <thead>
   <tr>
     <th>Player Name</th>
     <th>Player UUID</th>
   </tr>
+  </thead>
     {% for p in s.status.players.sample %}
   <tr>
     <td>{{ p.name }}</td>
